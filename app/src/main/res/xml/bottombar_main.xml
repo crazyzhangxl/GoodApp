@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 所有的列表-->
+<tabs>
+    <tab
+        id="@+id/tabDet"
+        icon="@mipmap/ic_main_cultivation"
+        title="检测" />
+    <tab
+        id="@+id/tabNews"
+        icon="@mipmap/ic_main_news"
+        title="资讯" />
+    <tab
+        id="@+id/tabMsg"
+        icon="@mipmap/ic_main_message"
+        title="消息" />
+    <tab
+        id="@+id/tabMe"
+        icon="@mipmap/ic_main_me"
+        title="我" />
+</tabs>

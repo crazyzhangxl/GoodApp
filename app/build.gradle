@@ -1,0 +1,67 @@
+apply plugin: 'com.android.application'
+android {
+    compileSdkVersion 26
+    defaultConfig {
+        applicationId "com.zxl.goodapp"
+        minSdkVersion 16        /* 记住这个minSDK是16 */
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        // 分包
+        multiDexEnabled true
+    }
+    buildTypes {
+        release {
+            // 混淆
+            minifyEnabled true
+            //Zipalign优化
+            zipAlignEnabled true
+            // 移除无用的resource文件
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    //lambda必备
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    configurations.all {
+        resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+            def requested = details.requested
+            if (requested.group == 'com.android.support') {
+                if (!requested.name.startsWith("multidex")) {
+                    details.useVersion '26.1.0'
+                }
+            }
+        }
+    }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+
+    //设置虚拟机堆内存空间大小，避免在编译期间OOM
+/*    dexOptions {
+        incremental true
+        javaMaxHeapSize "4g"
+    }*/
+/*    //打包不检查
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }*/
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation project(':baselib')
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'  // 必加
+    annotationProcessor 'com.github.hotchemi:permissionsdispatcher-processor:2.3.2' // 必加
+}
