@@ -2,7 +2,9 @@ package com.zxl.baselib.ui.base;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -30,12 +32,14 @@ public abstract class BaseActivity<V extends BaseView,T extends BasePresenter<V>
     private MaterialDialog mPSMaterialDialog;
     @SuppressWarnings("SpellCheckingInspection")
     private Unbinder mUnbinder = null;
+    private boolean isConfigChange=false;
 
     @SuppressWarnings("unchecked")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        AppManager.getAppManager().addActivity(this);
+        isConfigChange=false;
+        doBeforeSetContentView();
         mContext = this;
         init();
         mPresenter = createPresenter();
@@ -48,6 +52,13 @@ public abstract class BaseActivity<V extends BaseView,T extends BasePresenter<V>
         initView(savedInstanceState);
         initData();
         initListener();
+    }
+
+    private void doBeforeSetContentView() {
+        // 设置添加活动管理
+        AppManager.getAppManager().addActivity(this);
+        // 设置竖屏
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     }
 
     //在setContentView()调用之前调用，可以设置WindowFeature(如：this.requestWindowFeature(Window.FEATURE_NO_TITLE);)
@@ -233,6 +244,11 @@ public abstract class BaseActivity<V extends BaseView,T extends BasePresenter<V>
         startActivity(intent);
     }
 
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        isConfigChange=true;
+    }
 
     @Override
     protected void onDestroy() {
@@ -243,7 +259,9 @@ public abstract class BaseActivity<V extends BaseView,T extends BasePresenter<V>
         if (mUnbinder != null) {
             mUnbinder.unbind();
         }
-        AppManager.getAppManager().removeActivity(this);
+        if(!isConfigChange) {
+            AppManager.getAppManager().removeActivity(this);
+        }
     }
 }
 
