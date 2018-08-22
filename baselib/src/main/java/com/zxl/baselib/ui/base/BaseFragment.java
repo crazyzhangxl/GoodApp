@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.zxl.baselib.baserx.RxManager;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -26,11 +27,13 @@ public abstract class BaseFragment<V extends BaseView,T extends BasePresenter<V>
     private MaterialDialog mWaitMaterialDialog;
     @SuppressWarnings("SpellCheckingInspection")
     private Unbinder mUnbinder = null;
+    public RxManager mRxManager;
 
     @SuppressWarnings("unchecked")
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mRxManager = new RxManager();
         init();
         //判断是否使用MVP模式
         mPresenter = createPresenter();
@@ -213,6 +216,10 @@ public abstract class BaseFragment<V extends BaseView,T extends BasePresenter<V>
         super.onDestroyView();
         if (mUnbinder != null){
             mUnbinder.unbind();
+        }
+
+        if (mRxManager != null){
+            mRxManager.clear();
         }
     }
 }

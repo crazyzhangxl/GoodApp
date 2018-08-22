@@ -6,6 +6,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.zxl.goodapp.commom.AppConstant;
 import com.zxl.goodapp.ui.activity.LoginActivity;
 import com.zxl.goodapp.ui.photos.PullPhotoDetailActivity;
 import com.zxl.baselib.commom.BaseAppConst;
@@ -16,6 +17,7 @@ import com.zxl.baselib.util.ui.StatusBarHelper;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import io.reactivex.functions.Consumer;
 
 
 /**
@@ -51,6 +53,7 @@ public class MainActivity extends BaseActivity {
         StatusBarHelper.setStatusBarLightMode(this);
         GlideLoaderUtils.display(this,mImageView, BaseAppConst.T_IMAGE_URL);
         mTvTest.setText("状态栏高度:"+StatusBarHelper.getStatusBarHeight(this));
+
     }
 
     @Override
@@ -68,6 +71,8 @@ public class MainActivity extends BaseActivity {
                         v);
             }
         });
+
+        mRxManager.on(AppConstant.TEST_EVENTBUS, (Consumer<String>) s -> mTvTest.setText(s));
     }
 
     @OnClick({R.id.btn})

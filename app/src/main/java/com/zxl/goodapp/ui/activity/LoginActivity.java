@@ -10,11 +10,12 @@ import android.widget.LinearLayout;
 
 import com.zxl.baselib.ui.base.BaseActivity;
 import com.zxl.baselib.ui.base.BasePresenter;
-
 import com.zxl.baselib.util.window.DisplayHelper;
 import com.zxl.goodapp.R;
+import com.zxl.goodapp.commom.AppConstant;
 
 import butterknife.BindView;
+
 
 /**
  * @author zxl on 2018/08/19.
@@ -49,7 +50,6 @@ public class LoginActivity extends BaseActivity {
     @Override
     protected void initView(Bundle savedInstanceState) {
         buttonBeyondKeyboardLayout(mLlRoot,mBtLogin);
-
     }
 
     @Override
@@ -127,7 +127,9 @@ public class LoginActivity extends BaseActivity {
 
     @Override
     protected void initListener() {
-
+        mBtLogin.setOnClickListener(v -> {
+            mRxManager.post(AppConstant.TEST_EVENTBUS,"你是谁");
+        });
     }
 
 }

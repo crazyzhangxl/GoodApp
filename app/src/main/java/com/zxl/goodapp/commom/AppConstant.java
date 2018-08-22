@@ -8,4 +8,6 @@ import com.zxl.baselib.commom.BaseAppConst;
  */
 
 public class AppConstant extends BaseAppConst{
+
+    public static final String TEST_EVENTBUS = "eventbus";
 }

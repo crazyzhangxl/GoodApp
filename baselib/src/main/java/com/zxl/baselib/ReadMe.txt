@@ -23,7 +23,7 @@
         eventBus 组件交互
         pickVIew 省市区以及时间选择器
         二维码
-        litePal 数据库
+        litePal 数据库(首选 当然GreenDao后面有兴趣再去了解)
         multiDex 分包
         refreshLayout
         material-calenderView 材质日历

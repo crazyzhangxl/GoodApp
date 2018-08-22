@@ -13,7 +13,10 @@ import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.luck.picture.lib.rxbus2.RxBus;
 import com.zxl.baselib.baseapp.AppManager;
+import com.zxl.baselib.baserx.RxManager;
+
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import me.yokeyword.fragmentation.SupportActivity;
@@ -33,12 +36,14 @@ public abstract class BaseActivity<V extends BaseView,T extends BasePresenter<V>
     @SuppressWarnings("SpellCheckingInspection")
     private Unbinder mUnbinder = null;
     private boolean isConfigChange=false;
+    public RxManager mRxManager;
 
     @SuppressWarnings("unchecked")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         isConfigChange=false;
+        mRxManager=new RxManager();
         doBeforeSetContentView();
         mContext = this;
         init();
@@ -259,6 +264,11 @@ public abstract class BaseActivity<V extends BaseView,T extends BasePresenter<V>
         if (mUnbinder != null) {
             mUnbinder.unbind();
         }
+
+        if(mRxManager!=null) {
+            mRxManager.clear();
+        }
+
         if(!isConfigChange) {
             AppManager.getAppManager().removeActivity(this);
         }
