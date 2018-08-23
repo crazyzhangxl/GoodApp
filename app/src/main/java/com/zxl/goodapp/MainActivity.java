@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.orhanobut.logger.Logger;
 import com.zxl.baselib.util.LoggerUtils;
+import com.zxl.baselib.util.ui.AnimateHelper;
 import com.zxl.goodapp.commom.AppConstant;
 import com.zxl.goodapp.ui.activity.LoginActivity;
 import com.zxl.goodapp.ui.photos.PullPhotoDetailActivity;
@@ -34,6 +35,7 @@ public class MainActivity extends BaseActivity {
     ImageView mImageView;
     @BindView(R.id.tvTest)
     TextView mTvTest;
+    private int mTvHeight;
 
     @Override
     protected void init() {
@@ -55,6 +57,9 @@ public class MainActivity extends BaseActivity {
         StatusBarHelper.setStatusBarLightMode(this);
         GlideLoaderUtils.display(this,mImageView, BaseAppConst.T_IMAGE_URL);
         mTvTest.setText("状态栏高度:"+StatusBarHelper.getStatusBarHeight(this));
+
+        mTvTest.measure(0,0);
+        mTvHeight = mTvTest.getMeasuredHeight();
     }
 
     @Override
@@ -80,7 +85,7 @@ public class MainActivity extends BaseActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn:
-                jumpToActivity(LoginActivity.class);
+                AnimateHelper.getInstance().hideOrShowDetailView(mTvTest,mTvHeight,false);
                 break;
             default:
                 break;
