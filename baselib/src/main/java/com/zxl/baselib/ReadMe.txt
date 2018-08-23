@@ -36,6 +36,7 @@
         cityPicker 城市选择-------- 注意活动的主体背景
         蒲公英 ---- 在线升级
         Logger日志管理
+        avi 比较不错的加载效果 ---
 
  秘籍:
    1.解决NestedScrollView与RecyclerView的卡顿(scrollView和Rv同向):

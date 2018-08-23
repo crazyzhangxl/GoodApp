@@ -1,25 +1,32 @@
 package com.zxl.goodapp;
 
 import android.os.Bundle;
-import android.view.ViewTreeObserver;
-import android.widget.EditText;
+import android.view.View;
+import android.widget.Button;
 
 import com.zxl.baselib.ui.base.BaseActivity;
 import com.zxl.baselib.ui.base.BasePresenter;
-import com.zxl.baselib.util.ui.UIUtils;
-import com.zxl.baselib.util.window.KeyboardHelper;
+import com.zxl.baselib.widget.LoadingTip;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * @author zxl on 2018/08/16.
  *         discription: 用于各种测试的活动 ------
  */
 public class TestActivity extends BaseActivity {
-
-    @BindView(R.id.etTest)
-    EditText mEtTest;
+    @BindView(R.id.load)
+    Button mLoad;
+    @BindView(R.id.error)
+    Button mError;
+    @BindView(R.id.finish)
+    Button mFinish;
+    @BindView(R.id.netError)
+    Button mNetError;
+    @BindView(R.id.loadedTip)
+    LoadingTip mLoadedTip;
 
     @Override
     protected void init() {
@@ -38,22 +45,8 @@ public class TestActivity extends BaseActivity {
 
     @Override
     protected void initView(Bundle savedInstanceState) {
-        setViewObserver();
     }
 
-    private void setViewObserver() {
-        ViewTreeObserver observer = mEtTest.getViewTreeObserver();
-        observer.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            @Override
-            public void onGlobalLayout() {
-                if (KeyboardHelper.isKeyboardVisible(TestActivity.this)){
-                    UIUtils.showToast("可见");
-                }else {
-                    UIUtils.showToast("隐藏");
-                }
-            }
-        });
-    }
 
     @Override
     protected void initData() {
@@ -65,10 +58,30 @@ public class TestActivity extends BaseActivity {
 
     }
 
+
+    @OnClick({R.id.load, R.id.error, R.id.finish, R.id.netError})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.load:
+                mLoadedTip.setLoadingTip(LoadingTip.LoadStatus.Loading);
+                break;
+            case R.id.error:
+                mLoadedTip.setLoadingTip(LoadingTip.LoadStatus.Error);
+                break;
+            case R.id.finish:
+                mLoadedTip.setLoadingTip(LoadingTip.LoadStatus.Finish);
+                break;
+            case R.id.netError:
+                mLoadedTip.setLoadingTip(LoadingTip.LoadStatus.ServiceError);
+                break;
+            default:
+                break;
+        }
+    }
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
+    public void onBackPressedSupport() {
+        super.onBackPressedSupport();
+
     }
 }

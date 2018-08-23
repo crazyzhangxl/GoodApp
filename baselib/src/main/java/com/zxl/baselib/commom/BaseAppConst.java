@@ -47,5 +47,8 @@ public class BaseAppConst {
      */
     public static final String T_IMAGE_URL = "https://img14.360buyimg.com/n7/jfs/t22456/22/1130676737/229109/53d3a22d/5b5071d2N9dc995d3.jpg";
 
-
+    /**
+     * 菜单展示或者隐藏
+     */
+    public static final String MENU_SHOW_HIDE="MENU_SHOW_HIDE";
 }

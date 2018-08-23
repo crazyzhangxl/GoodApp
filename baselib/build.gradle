@@ -107,6 +107,7 @@ dependencies {
     api files('libs/pinyin4j-2.5.0.jar')
     api 'com.alibaba:fastjson:1.2.29'
     api 'com.orhanobut:logger:2.1.1'//打印日志
+    api 'com.wang.avi:library:2.1.3'//加载进度条
 
 
 }

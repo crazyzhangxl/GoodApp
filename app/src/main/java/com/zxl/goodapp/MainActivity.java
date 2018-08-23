@@ -85,7 +85,7 @@ public class MainActivity extends BaseActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn:
-                AnimateHelper.getInstance().hideOrShowDetailView(mTvTest,mTvHeight,false);
+                jumpToActivity(TestActivity.class);
                 break;
             default:
                 break;

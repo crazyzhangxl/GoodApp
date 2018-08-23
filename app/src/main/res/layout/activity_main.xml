@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
     <Button
+        android:foreground="?attr/selectableItemBackgroundBorderless"
         android:id="@+id/btn"
         android:text="下一步"
         android:layout_width="@dimen/common_dimension_120"

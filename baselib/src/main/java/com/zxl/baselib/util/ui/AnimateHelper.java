@@ -28,6 +28,7 @@ public class AnimateHelper {
 
     /**
      * 展示或者隐藏某个特定的View
+     * 样例: AnimateHelper.getInstance().hideOrShowDetailView(mTvTest,mTvHeight,false);
      */
     public void  hideOrShowDetailView(final View view, int height, boolean isShow){
         final ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
