@@ -325,8 +325,6 @@ public class MulPicWithNumActivity extends BaseActivity implements ViewPager.OnP
                         @Override
                         public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
                             progressBar.setVisibility(View.GONE);
-
-                            /**这里应该是加载成功后图片的高*/
                             int height = zoom_image_view.getHeight();
                             int wHeight = getWindowManager().getDefaultDisplay().getHeight();
                             if (height > wHeight) {
