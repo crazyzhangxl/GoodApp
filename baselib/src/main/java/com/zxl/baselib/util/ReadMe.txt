@@ -8,3 +8,10 @@ media: 音视频处理工具
 time:  时间工具
 ui:    视图帮助工具
 window:窗口帮助工具
+
+
+
+活动间动画Sample:
+Intent intent = new Intent(this, MainActivity.class);
+startActivity(intent);
+overridePendingTransition(R.anim.screen_zoom_in, R.anim.screen_zoom_out);

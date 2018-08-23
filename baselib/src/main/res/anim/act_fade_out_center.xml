@@ -2,7 +2,10 @@
 <set xmlns:android="http://schemas.android.com/apk/res/android"
     android:shareInterpolator="false"
     android:duration="300">
-
+    <!--
+        动画时常0.3秒
+        以中心点为远点 从1缩放到0  透明度由1变为0
+     -->
     <scale
         android:fromXScale="100%"
         android:toXScale="0%"
