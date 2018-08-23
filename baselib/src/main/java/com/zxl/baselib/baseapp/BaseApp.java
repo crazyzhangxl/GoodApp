@@ -2,6 +2,10 @@ package com.zxl.baselib.baseapp;
 import android.content.Context;
 import android.os.Handler;
 import android.support.multidex.MultiDexApplication;
+
+import com.orhanobut.logger.AndroidLogAdapter;
+import com.orhanobut.logger.Logger;
+
 /**
  * @author zxl on 2018/8/8.
  *         discription:
@@ -33,6 +37,8 @@ public class BaseApp extends MultiDexApplication {
         mMainThreadId = android.os.Process.myTid();
         mHandler = new Handler();
         screenDensity = getApplicationContext().getResources().getDisplayMetrics().density;
+        //初始化Logger
+        Logger.addLogAdapter(new AndroidLogAdapter());
     }
 
     public static Context getContext() {

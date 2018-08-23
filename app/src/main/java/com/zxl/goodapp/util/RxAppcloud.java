@@ -8,7 +8,7 @@ import android.os.Environment;
 
 import com.squareup.picasso.Picasso;
 import com.zxl.baselib.commom.BaseAppConst;
-import com.zxl.baselib.util.LogUtils;
+import com.zxl.baselib.util.LoggerUtils;
 import com.zxl.baselib.util.time.TimeUtil;
 
 import java.io.File;
@@ -46,7 +46,7 @@ public class RxAppcloud {
                     }
 
                     String fileName = TimeUtil.date2String(new Date(),"yyyy-MM-dd-HH-mm-ss")+".jpg";
-                    LogUtils.e("路径",fileName);
+                    LoggerUtils.logE(fileName);
                     File file = new File(appDir,fileName);
                     try {
                         FileOutputStream outputStream = new FileOutputStream(file);
@@ -61,7 +61,7 @@ public class RxAppcloud {
                     /* t通知图库更新*/
                     Intent scannerIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, uri);
                     context.sendBroadcast(scannerIntent);
-                    LogUtils.e("路径",uri.getPath());
+                    LoggerUtils.logE(uri.getPath());
                     return Observable.just(uri);
                 }
         ).subscribeOn(Schedulers.io());

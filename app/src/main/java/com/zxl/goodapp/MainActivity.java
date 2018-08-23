@@ -6,6 +6,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.orhanobut.logger.Logger;
+import com.zxl.baselib.util.LoggerUtils;
 import com.zxl.goodapp.commom.AppConstant;
 import com.zxl.goodapp.ui.activity.LoginActivity;
 import com.zxl.goodapp.ui.photos.PullPhotoDetailActivity;
@@ -53,7 +55,6 @@ public class MainActivity extends BaseActivity {
         StatusBarHelper.setStatusBarLightMode(this);
         GlideLoaderUtils.display(this,mImageView, BaseAppConst.T_IMAGE_URL);
         mTvTest.setText("状态栏高度:"+StatusBarHelper.getStatusBarHeight(this));
-
     }
 
     @Override

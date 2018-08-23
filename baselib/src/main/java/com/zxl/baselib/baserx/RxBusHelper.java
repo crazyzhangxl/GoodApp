@@ -1,6 +1,8 @@
 package com.zxl.baselib.baserx;
 import android.support.annotation.NonNull;
-import com.zxl.baselib.util.LogUtils;
+
+import com.zxl.baselib.util.LoggerUtils;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -17,7 +19,6 @@ import io.reactivex.subjects.Subject;
  * @author zxl
  */
 public class RxBusHelper {
-    private static final String TAG = "RxBusHelper";
     private RxBusHelper() {
     }
 
@@ -40,12 +41,12 @@ public class RxBusHelper {
      * @param consumer
      * @return
      */
-    public RxBusHelper OnEvent(Observable<?> mObservable, Consumer<Object> consumer) {
+    public RxBusHelper onEvent(Observable<?> mObservable, Consumer<Object> consumer) {
         mObservable.observeOn(AndroidSchedulers.mainThread())
                 .subscribe(consumer, new Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
-
+                        throwable.printStackTrace();
                     }
                 });
         return getInstance();
@@ -66,7 +67,7 @@ public class RxBusHelper {
         }
         Subject<T> subject;
         subjectList.add(subject = PublishSubject.create());
-        LogUtils.e(TAG,"register"+tag + "  size:" + subjectList.size());
+        LoggerUtils.logE("register"+tag + "  size:" + subjectList.size());
         return subject;
     }
 
@@ -96,7 +97,7 @@ public class RxBusHelper {
             subjects.remove((Subject<?>) observable);
             if (isEmpty(subjects)) {
                 subjectMapper.remove(tag);
-                LogUtils.e(TAG,"register"+tag + "  size:" + subjects.size());
+                LoggerUtils.logE("register"+tag + "  size:" + subjects.size());
             }
         }
         return getInstance();
@@ -117,7 +118,7 @@ public class RxBusHelper {
         if (!isEmpty(subjectList)) {
             for (Subject subject : subjectList) {
                 subject.onNext(content);
-                LogUtils.e(TAG,"onEvent"+ "eventName: " + tag);
+                LoggerUtils.logE("onEvent"+ "eventName: " + tag);
             }
         }
     }

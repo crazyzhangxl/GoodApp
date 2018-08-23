@@ -7,7 +7,6 @@ import android.os.Environment;
 
 import com.squareup.picasso.Picasso;
 import com.zxl.baselib.commom.BaseAppConst;
-import com.zxl.baselib.util.LogUtils;
 import com.zxl.baselib.util.time.TimeUtil;
 
 import java.io.File;
@@ -56,7 +55,6 @@ public class RxDownLoad {
                         e.printStackTrace();
                     }
                     Uri uri = Uri.fromFile(file);
-                    LogUtils.e("路径",uri.getPath());
                     return Observable.just(uri);
                 }
         ).subscribeOn(Schedulers.io());

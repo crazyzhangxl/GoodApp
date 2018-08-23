@@ -1,6 +1,6 @@
 package com.zxl.baselib.util.media;
 
-import com.zxl.baselib.util.LogUtils;
+import com.zxl.baselib.util.LoggerUtils;
 
 import java.io.Closeable;
 import java.io.IOException;
@@ -20,7 +20,7 @@ public class IOUtils {
                 io.close();
             } catch (IOException e) {
                 e.printStackTrace();
-                LogUtils.e("关闭流失败",e.getLocalizedMessage());
+                LoggerUtils.logE("关闭流失败",e.getLocalizedMessage());
             }
         }
         return true;

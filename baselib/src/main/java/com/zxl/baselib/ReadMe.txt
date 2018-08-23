@@ -35,6 +35,7 @@
         picasso 毕加索 返回bitmap对象(后面这个可以换掉-->自己手写的下载图片)
         cityPicker 城市选择-------- 注意活动的主体背景
         蒲公英 ---- 在线升级
+        Logger日志管理
 
  秘籍:
    1.解决NestedScrollView与RecyclerView的卡顿(scrollView和Rv同向):

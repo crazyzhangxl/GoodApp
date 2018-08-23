@@ -3,7 +3,7 @@ package com.zxl.baselib.util.media;
 import android.os.Environment;
 import android.text.TextUtils;
 
-import com.zxl.baselib.util.LogUtils;
+import com.zxl.baselib.util.LoggerUtils;
 import com.zxl.baselib.util.ui.UIUtils;
 
 import java.io.File;
@@ -151,7 +151,8 @@ public class FileUtils {
                 srcFile.delete();
             }
         } catch (Exception e) {
-            LogUtils.e("打印错误",e.getLocalizedMessage());
+            LoggerUtils.logE("打印错误",e,"文件错误");
+            LoggerUtils.logE("打印错误",e,"文件错误");
             return false;
         } finally {
             IOUtils.close(out);
@@ -171,7 +172,7 @@ public class FileUtils {
             File f = new File(path);
             return f.exists() && f.canWrite();
         } catch (Exception e) {
-            LogUtils.e("打印错误",e.getLocalizedMessage());
+            LoggerUtils.logE("打印错误",e,"文件错误");
             return false;
         }
     }
@@ -185,7 +186,7 @@ public class FileUtils {
             Runtime runtime = Runtime.getRuntime();
             runtime.exec(command);
         } catch (Exception e) {
-            LogUtils.e("打印错误",e.getLocalizedMessage());
+            LoggerUtils.logE("打印错误",e,"文件错误");
         }
     }
 
@@ -218,7 +219,7 @@ public class FileUtils {
                 res = true;
             }
         } catch (Exception e) {
-            LogUtils.e("打印错误",e.getLocalizedMessage());
+            LoggerUtils.logE("打印错误",e,"文件错误");
         } finally {
             IOUtils.close(fos);
             IOUtils.close(is);
@@ -254,7 +255,7 @@ public class FileUtils {
                 res = true;
             }
         } catch (Exception e) {
-            LogUtils.e("打印错误",e.getLocalizedMessage());
+            LoggerUtils.logE("打印错误",e,"文件错误");
         } finally {
             IOUtils.close(raf);
         }
@@ -301,7 +302,7 @@ public class FileUtils {
             fos = new FileOutputStream(f);
             p.store(fos, comment);
         } catch (Exception e) {
-            LogUtils.e("打印错误",e.getLocalizedMessage());
+            LoggerUtils.logE("打印错误",e,"文件错误");
         } finally {
             IOUtils.close(fis);
             IOUtils.close(fos);
@@ -328,7 +329,7 @@ public class FileUtils {
             p.load(fis);
             value = p.getProperty(key, defaultValue);
         } catch (IOException e) {
-            LogUtils.e("打印错误",e.getLocalizedMessage());
+            LoggerUtils.logE("打印错误",e,"文件错误");
         } finally {
             IOUtils.close(fis);
         }
@@ -360,7 +361,7 @@ public class FileUtils {
             fos = new FileOutputStream(f);
             p.store(fos, comment);
         } catch (Exception e) {
-            LogUtils.e("打印错误",e.getLocalizedMessage());
+            LoggerUtils.logE("打印错误",e,"文件错误");
         } finally {
             IOUtils.close(fis);
             IOUtils.close(fos);
@@ -389,7 +390,7 @@ public class FileUtils {
             // 因为properties继承了map，所以直接通过p来构造一个map
             map = new HashMap<String, String>((Map) p);
         } catch (Exception e) {
-            LogUtils.e("打印错误",e.getLocalizedMessage());
+            LoggerUtils.logE("打印错误",e,"文件错误");
         } finally {
             IOUtils.close(fis);
         }
@@ -417,7 +418,7 @@ public class FileUtils {
                 out.flush();
             }
         } catch (Exception e) {
-            LogUtils.e("打印错误",e.getLocalizedMessage());
+            LoggerUtils.logE("打印错误",e,"文件错误");
             return false;
         } finally {
             IOUtils.close(in);
