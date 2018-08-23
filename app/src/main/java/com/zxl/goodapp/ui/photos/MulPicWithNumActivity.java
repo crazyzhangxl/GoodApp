@@ -31,6 +31,7 @@ import com.zxl.baselib.R;
 import com.zxl.baselib.commom.BaseAppConst;
 import com.zxl.baselib.ui.base.BaseActivity;
 import com.zxl.baselib.ui.base.BasePresenter;
+import com.zxl.baselib.util.ui.ViewHelper;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -307,7 +308,6 @@ public class MulPicWithNumActivity extends BaseActivity implements ViewPager.OnP
             } else {
                 imageUrl = adapter_image_Entity;
             }
-
             progressBar.setVisibility(View.VISIBLE);
             progressBar.setClickable(false);
             Glide.with(MulPicWithNumActivity.this).load(imageUrl)
