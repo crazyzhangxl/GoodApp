@@ -6,11 +6,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.orhanobut.logger.Logger;
-import com.zxl.baselib.util.LoggerUtils;
-import com.zxl.baselib.util.ui.AnimateHelper;
 import com.zxl.goodapp.commom.AppConstant;
-import com.zxl.goodapp.ui.activity.LoginActivity;
 import com.zxl.goodapp.ui.photos.PullPhotoDetailActivity;
 import com.zxl.baselib.commom.BaseAppConst;
 import com.zxl.baselib.ui.base.BaseActivity;

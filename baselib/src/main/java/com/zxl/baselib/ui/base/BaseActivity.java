@@ -1,5 +1,6 @@
 package com.zxl.baselib.ui.base;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -11,11 +12,13 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
+import android.view.View;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.luck.picture.lib.rxbus2.RxBus;
 import com.zxl.baselib.baseapp.AppManager;
 import com.zxl.baselib.baserx.RxManager;
+import com.zxl.baselib.widget.LoadingProgressDialog;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -33,6 +36,7 @@ public abstract class BaseActivity<V extends BaseView,T extends BasePresenter<V>
     private MaterialDialog mMaterialDialog;
     private MaterialDialog mWaitMaterialDialog;
     private MaterialDialog mPSMaterialDialog;
+    private Dialog mNiceDialog;
     @SuppressWarnings("SpellCheckingInspection")
     private Unbinder mUnbinder = null;
     private boolean isConfigChange=false;
@@ -129,6 +133,26 @@ public abstract class BaseActivity<V extends BaseView,T extends BasePresenter<V>
         MulPicWithNumActivity.startAction(baseActivity,2,nowPosition,mUriStrList);
     }
 */
+
+    public void showNiceDialog(Context context){
+        try {
+            mNiceDialog = LoadingProgressDialog.createLoadingDialog(context);
+            mNiceDialog.setCanceledOnTouchOutside(false);
+            mNiceDialog.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void cancelNiceDialog() {
+        try {
+            if (mNiceDialog != null && mNiceDialog.isShowing()) {
+                mNiceDialog.dismiss();
+            }
+        } catch (Exception e ) {
+            e.printStackTrace();
+        }
+    }
 
 
     public void showWaitingDialog(String tip) {

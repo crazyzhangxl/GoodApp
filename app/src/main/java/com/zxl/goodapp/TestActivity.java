@@ -1,8 +1,10 @@
 package com.zxl.goodapp;
 
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import com.zxl.baselib.ui.base.BaseActivity;
 import com.zxl.baselib.ui.base.BasePresenter;
@@ -27,6 +29,9 @@ public class TestActivity extends BaseActivity {
     Button mNetError;
     @BindView(R.id.loadedTip)
     LoadingTip mLoadedTip;
+    @BindView(R.id.img_progress)
+    ImageView mImgProgress;
+    private AnimationDrawable mAnimationDrawable;
 
     @Override
     protected void init() {
@@ -45,6 +50,10 @@ public class TestActivity extends BaseActivity {
 
     @Override
     protected void initView(Bundle savedInstanceState) {
+        mAnimationDrawable = (AnimationDrawable) mImgProgress.getDrawable();
+        if (!mAnimationDrawable.isRunning()) {
+            mAnimationDrawable.start();
+        }
     }
 
 
@@ -84,4 +93,6 @@ public class TestActivity extends BaseActivity {
         super.onBackPressedSupport();
 
     }
+
+
 }
