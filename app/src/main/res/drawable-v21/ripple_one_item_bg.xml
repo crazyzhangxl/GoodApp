@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="@color/itemBackground">
+    <!--item的水波纹颜色 #DD7D7D7D-->
+
+
+    <!--页面背景的颜色 #f2f4f5 -->
+
+    <item>
+        <color android:color="@color/colorPageBg" />
+    </item>
+    <item>
+        <color android:color="@color/colorPageBg" />
+    </item>
+</ripple>
