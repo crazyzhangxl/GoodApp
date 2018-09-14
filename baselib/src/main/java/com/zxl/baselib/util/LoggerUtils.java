@@ -1,15 +1,17 @@
 package com.zxl.baselib.util;
 
 import com.orhanobut.logger.Logger;
+import com.zxl.baselib.BuildConfig;
+
 /**
  * @author zxl
  * 日志管理工具类 ------
  */
 public class LoggerUtils {
     /**
-     * 是否调试模式
+     * 是否调试模式,Debug时是一个值 release 又是另外一个值哦
      */
-    private static final boolean DEBUG_ENABLE =true;
+    private static final boolean DEBUG_ENABLE = BuildConfig.LOG_DEBUG;
 
     public static void logD(String tag, String message) {
         if (DEBUG_ENABLE) {

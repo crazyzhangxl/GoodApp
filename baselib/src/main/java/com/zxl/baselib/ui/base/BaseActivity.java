@@ -16,6 +16,7 @@ import android.view.View;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.luck.picture.lib.rxbus2.RxBus;
+import com.zxl.baselib.BuildConfig;
 import com.zxl.baselib.baseapp.AppManager;
 import com.zxl.baselib.baserx.RxManager;
 import com.zxl.baselib.widget.LoadingProgressDialog;
@@ -103,6 +104,7 @@ public abstract class BaseActivity<V extends BaseView,T extends BasePresenter<V>
         if (bundle != null){
             intent.putExtras(bundle);
         }
+
         startActivity(intent);
     }
 

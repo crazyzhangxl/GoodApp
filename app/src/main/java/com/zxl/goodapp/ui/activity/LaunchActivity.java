@@ -3,6 +3,7 @@ package com.zxl.goodapp.ui.activity;
 import android.os.Bundle;
 import android.widget.FrameLayout;
 
+import com.zxl.goodapp.BuildConfig;
 import com.zxl.goodapp.R;
 import com.zxl.goodapp.factory.LaunchFgFactory;
 import com.zxl.goodapp.ui.fragment.DetFragment;
