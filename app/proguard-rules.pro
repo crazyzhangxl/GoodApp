@@ -71,6 +71,8 @@
    public static final int *;
 }
 
+-ignorewarnings -keep class * { public private *; }
+
 
 
 #rxjava
