@@ -6,12 +6,12 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.zxl.goodapp.ui.activity.LaunchActivity">
-    <FrameLayout
-        android:id="@+id/fgMain"
+    <com.zxl.goodapp.ui.NoScrollViewPager
+        android:id="@+id/viewPager"
         android:layout_marginBottom="64dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    </FrameLayout>
+    </com.zxl.goodapp.ui.NoScrollViewPager>
     <com.roughike.bottombar.BottomBar
         android:id="@+id/bottomBar"
         android:layout_width="match_parent"

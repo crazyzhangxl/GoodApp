@@ -1,12 +1,13 @@
 apply plugin: 'com.android.application'
 android {
-    compileSdkVersion 26
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
     defaultConfig {
-        applicationId "com.zxl.goodapp"
-        minSdkVersion 16        /* 记住这个minSDK是16 */
-        targetSdkVersion 26
-        versionCode 2
-        versionName "2.0"
+        applicationId rootProject.ext.applicationId
+        minSdkVersion rootProject.ext.minSdkVersion        /* 记住这个minSDK是16 */
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         // 分包
         multiDexEnabled true
@@ -24,11 +25,12 @@ android {
         }
 
 
-        debug{
+        debug {
             buildConfigField "boolean", "LOG_DEBUG", "true"
             minifyEnabled false
             zipAlignEnabled false
             shrinkResources false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
 
@@ -43,7 +45,7 @@ android {
             def requested = details.requested
             if (requested.group == 'com.android.support') {
                 if (!requested.name.startsWith("multidex")) {
-                    details.useVersion '26.1.0'
+                    details.useVersion rootProject.ext.supportVersion
                 }
             }
         }

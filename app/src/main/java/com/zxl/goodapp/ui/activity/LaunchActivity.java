@@ -1,6 +1,10 @@
 package com.zxl.goodapp.ui.activity;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.widget.FrameLayout;
 
 import com.zxl.goodapp.BuildConfig;
@@ -14,6 +18,9 @@ import com.roughike.bottombar.BottomBar;
 import com.zxl.baselib.ui.base.BaseActivity;
 import com.zxl.baselib.ui.base.BasePresenter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.BindView;
 import me.yokeyword.fragmentation.SupportFragment;
 
@@ -22,17 +29,10 @@ import me.yokeyword.fragmentation.SupportFragment;
  *         discription: 启动界面
  */
 public class LaunchActivity extends BaseActivity {
-    @BindView(R.id.fgMain)
-    FrameLayout mFgMain;
+    @BindView(R.id.viewPager)
+    ViewPager mViewPager;
     @BindView(R.id.bottomBar)
     BottomBar mBottomBar;
-
-    private SupportFragment[] mSupportFragments = new SupportFragment[4];
-    private static final int DET = 0;
-    private static  final  int NEWS = 1;
-    private static final  int MSG = 2;
-    private static final int ME = 3;
-    private int prePosition;
     @Override
     protected void init() {
 
@@ -50,23 +50,14 @@ public class LaunchActivity extends BaseActivity {
 
     @Override
     protected void initView(Bundle savedInstanceState) {
-        if (savedInstanceState == null){
-            mSupportFragments[DET] = LaunchFgFactory.getFactoryInstance().getDetFgInstance();
-            mSupportFragments[NEWS] = LaunchFgFactory.getFactoryInstance().getNewFgInstance();
-            mSupportFragments[MSG] = LaunchFgFactory.getFactoryInstance().getMsgInstance();
-            mSupportFragments[ME] = LaunchFgFactory.getFactoryInstance().getMeFgInstacne();
-            loadMultipleRootFragment(R.id.fgMain,DET,
-                    mSupportFragments[DET],
-                    mSupportFragments[NEWS],
-                    mSupportFragments[MSG],
-                    mSupportFragments[ME]);
-        }else {
-            mSupportFragments[DET] = findFragment(DetFragment.class);
-            mSupportFragments[NEWS] = findFragment(NewsFragment.class) ;
-            mSupportFragments[MSG] = findFragment(MsgFragment.class);
-            mSupportFragments[ME] = findFragment(MeFragment.class) ;
-
-        }
+        List<Fragment> fragmentList = new ArrayList<>();
+        fragmentList.add(LaunchFgFactory.getFactoryInstance().getDetFgInstance());
+        fragmentList.add(LaunchFgFactory.getFactoryInstance().getNewFgInstance());
+        fragmentList.add(LaunchFgFactory.getFactoryInstance().getMsgInstance());
+        fragmentList.add(LaunchFgFactory.getFactoryInstance().getMeFgInstacne());
+        mViewPager.setAdapter(new TestFragmentPagerAdapter(getSupportFragmentManager(),fragmentList));
+        mViewPager.setOffscreenPageLimit(fragmentList.size());
+        mViewPager.setCurrentItem(0);
     }
 
     @Override
@@ -74,30 +65,52 @@ public class LaunchActivity extends BaseActivity {
 
     }
 
+
     @Override
     protected void initListener() {
         mBottomBar.setOnTabSelectListener(tabId -> {
             switch (tabId){
                 case R.id.tabDet:
-                    showHideFragment(mSupportFragments[DET],mSupportFragments[prePosition]);
-                    prePosition = DET;
-                    break;
-                case R.id.tabMsg:
-                    showHideFragment(mSupportFragments[MSG],mSupportFragments[prePosition]);
-                    prePosition = MSG;
+                    mViewPager.setCurrentItem(0,false);
                     break;
                 case R.id.tabNews:
-                    showHideFragment(mSupportFragments[NEWS],mSupportFragments[prePosition]);
-                    prePosition = NEWS;
+                    mViewPager.setCurrentItem(1,false);
+                    break;
+                case R.id.tabMsg:
+                    mViewPager.setCurrentItem(2,false);
                     break;
                 case R.id.tabMe:
-                    showHideFragment(mSupportFragments[ME],mSupportFragments[prePosition]);
-                    prePosition = ME;
+                    mViewPager.setCurrentItem(3,false);
                     break;
                 default:
                     break;
             }
         });
+    }
+
+    private class TestFragmentPagerAdapter extends FragmentPagerAdapter{
+        private List<Fragment> mFragmentList;
+
+        public TestFragmentPagerAdapter(FragmentManager fm,List<Fragment> fragments) {
+            super(fm);
+            this.mFragmentList = fragments;
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            if (mFragmentList != null){
+                return mFragmentList.get(position);
+            }
+            return null;
+        }
+
+        @Override
+        public int getCount() {
+            if (mFragmentList != null){
+                return mFragmentList.size();
+            }
+            return 0;
+        }
     }
 
 }

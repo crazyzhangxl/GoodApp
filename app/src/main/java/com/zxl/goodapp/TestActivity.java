@@ -2,13 +2,21 @@ package com.zxl.goodapp;
 
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.BaseViewHolder;
+import com.example.xrecyclerview.XRecyclerView;
 import com.zxl.baselib.ui.base.BaseActivity;
 import com.zxl.baselib.ui.base.BasePresenter;
 import com.zxl.baselib.widget.LoadingTip;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -16,7 +24,7 @@ import butterknife.OnClick;
 
 /**
  * @author zxl on 2018/08/16.
- *         discription: 用于各种测试的活动 ------
+ * discription: 用于各种测试的活动 ------
  */
 public class TestActivity extends BaseActivity {
     @BindView(R.id.load)
@@ -31,11 +39,17 @@ public class TestActivity extends BaseActivity {
     LoadingTip mLoadedTip;
     @BindView(R.id.img_progress)
     ImageView mImgProgress;
+    @BindView(R.id.xRecyclerView)
+    XRecyclerView mXRecyclerView;
     private AnimationDrawable mAnimationDrawable;
+    private BaseQuickAdapter<String,BaseViewHolder> mAdapter;
+    private List<String> mList = new ArrayList<>();
 
     @Override
     protected void init() {
-
+        for (int i=0;i<20;i++){
+            mList.add("数据"+i);
+        }
     }
 
     @Override
@@ -54,6 +68,29 @@ public class TestActivity extends BaseActivity {
         if (!mAnimationDrawable.isRunning()) {
             mAnimationDrawable.start();
         }
+        initAdapter();
+    }
+
+    private void initAdapter() {
+        mXRecyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
+        mAdapter = new BaseQuickAdapter<String, BaseViewHolder>(R.layout.item_test,mList) {
+            @Override
+            protected void convert(BaseViewHolder helper, String item) {
+                helper.setText(R.id.tv,item);
+            }
+        };
+        mXRecyclerView.setLoadingListener(new XRecyclerView.LoadingListener() {
+            @Override
+            public void onRefresh() {
+
+            }
+
+            @Override
+            public void onLoadMore() {
+                Log.e("刷新","--------- 加载更多------");
+            }
+        });
+        mXRecyclerView.setAdapter(mAdapter);
     }
 
 
@@ -86,12 +123,6 @@ public class TestActivity extends BaseActivity {
             default:
                 break;
         }
-    }
-
-    @Override
-    public void onBackPressedSupport() {
-        super.onBackPressedSupport();
-
     }
 
 

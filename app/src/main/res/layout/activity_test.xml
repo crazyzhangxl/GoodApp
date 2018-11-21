@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
     <LinearLayout
+        android:visibility="gone"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -60,14 +61,18 @@
 
         </LinearLayout>
     </LinearLayout>
-
     <com.zxl.baselib.widget.LoadingTip
+        android:visibility="gone"
         android:id="@+id/loadedTip"
         android:layout_gravity="center"
         android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
     </com.zxl.baselib.widget.LoadingTip>
-
+    <com.example.xrecyclerview.XRecyclerView
+        android:id="@+id/xRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </com.example.xrecyclerview.XRecyclerView>
 
 </FrameLayout>

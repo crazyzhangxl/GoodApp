@@ -1,5 +1,6 @@
 package com.zxl.goodapp.ui.fragment;
 
+import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -15,38 +16,25 @@ import butterknife.BindView;
  *         discription:
  */
 
-public class NewsFragment extends BaseFragment {
-    @BindView(R.id.tv)
-    TextView mTv;
+public class NewsFragment extends LazyFragment {
+    private TextView mTv;
+
+
 
     @Override
-    public void init() {
-
+    public void initViews(View view,Bundle savedInstanceState) {
+        mTv = view.findViewById(R.id.tv);
+        Log.e("initView"," ----初始化  第二个Fragment-----");
     }
 
     @Override
-    protected int provideContentViewId() {
-        return R.layout.fragment_launch;
-    }
-
-    @Override
-    protected BasePresenter createPresenter() {
-        return null;
-    }
-
-    @Override
-    public void initView(View rootView) {
-        Log.e("initView"," ---- 第二个Fragment-----");
-    }
-
-    @Override
-    public void initData() {
+    public void lazyInit(View view, Bundle savedInstanceState) {
         mTv.setText(NewsFragment.class.getName());
-        Log.e("initData"," ---- 第二个Fragment-----");
+        Log.e("initData"," ---- 懒加载 第二个Fragment-----");
     }
 
     @Override
-    public void initListener() {
-
+    public int getLayoutId() {
+        return R.layout.fragment_launch;
     }
 }
