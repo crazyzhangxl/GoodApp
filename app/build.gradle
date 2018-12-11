@@ -34,6 +34,12 @@ android {
         }
     }
 
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+
     //lambda必备
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -51,19 +57,6 @@ android {
         }
     }
 
-    sourceSets {
-        main {
-            jniLibs.srcDirs = ['libs']
-        }
-    }
-
-/*   设置虚拟机堆内存空间大小，避免在编译期间OOM
-     这个不添加 不然会报:Warning:The `android.dexOptions.incremental`
-     property is deprecated and it has no effect on the build process.*/
-/*    dexOptions {
-        incremental true
-        javaMaxHeapSize "4g"
-    }*/
     //打包不检查
     lintOptions {
         checkReleaseBuilds false
@@ -75,6 +68,8 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation project(':baselib')
     implementation 'com.android.support.constraint:constraint-layout:1.1.2'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'  // 必加
-    annotationProcessor 'com.github.hotchemi:permissionsdispatcher-processor:2.3.2' // 必加
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    // 必加
+    annotationProcessor 'com.github.hotchemi:permissionsdispatcher-processor:2.3.2'
+    // 必加
 }
