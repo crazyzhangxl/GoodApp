@@ -1,13 +1,18 @@
 package com.zxl.goodapp;
 
 import android.os.Bundle;
+import android.os.Environment;
 import android.transition.Scene;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.tencent.bugly.Bugly;
+import com.tencent.bugly.beta.Beta;
+import com.tencent.bugly.beta.UpgradeInfo;
 import com.tencent.bugly.crashreport.CrashReport;
 import com.zxl.goodapp.base.ApiRetrofit;
 import com.zxl.goodapp.commom.AppConstant;
@@ -19,6 +24,7 @@ import com.zxl.baselib.ui.base.BaseActivity;
 import com.zxl.baselib.ui.base.BasePresenter;
 import com.zxl.baselib.util.image.GlideLoaderUtils;
 import com.zxl.baselib.util.ui.StatusBarHelper;
+import com.zxl.goodapp.util.BuglyHelper;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -26,10 +32,13 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
+import static com.tencent.bugly.beta.Beta.getUpgradeInfo;
+
 
 /**
  * @author zxl on 2018/06/30.
  *         discription:
+ *         https://blog.csdn.net/Life_s/article/details/80989579
  */
 
 public class MainActivity extends BaseActivity {
@@ -68,7 +77,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initData() {
-        CrashReport.testJavaCrash();
+        BuglyHelper.getInstance().doUpdateNow(this);
     }
 
     @Override
@@ -89,25 +98,14 @@ public class MainActivity extends BaseActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn:
-                jumpToActivity(SplashActivity.class);
-//                ApiRetrofit.getInstance().queryPondMainInfo()
-//                        .subscribeOn(Schedulers.io())
-//                        .observeOn(AndroidSchedulers.mainThread())
-//                        .subscribe(new Consumer<Object>() {
-//                            @Override
-//                            public void accept(Object o) throws Exception {
-//                                Log.e("结果","成功");
-//                            }
-//                        }, new Consumer<Throwable>() {
-//                            @Override
-//                            public void accept(Throwable throwable) throws Exception {
-//                                Log.e("结果","失败");
-//                            }
-//                        });
+                // 检查升级
                 break;
             default:
                 break;
         }
     }
+
+
+
 
 }

@@ -5,7 +5,6 @@ import android.support.multidex.MultiDexApplication;
 
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
-import com.tencent.bugly.crashreport.CrashReport;
 
 /**
  * @author zxl on 2018/8/8.

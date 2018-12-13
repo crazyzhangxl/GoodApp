@@ -131,6 +131,7 @@
 #blugy抗混淆配置
 -dontwarn com.tencent.bugly.**
 -keep public class com.tencent.bugly.**{*;}
+-keep class android.support.**{*;}
 
 ##支付宝
 #-dontwarn com.alipay.**
