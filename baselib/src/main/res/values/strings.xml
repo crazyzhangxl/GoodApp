@@ -16,4 +16,16 @@
     <string name="loading">请稍后…</string>
     <string name="reload">重新尝试</string>
     <string name="no_net">网络不可用,请检查你的网络</string>
+
+    <!-- 权限弹出框的语句呈现-->
+    <string name="needs_your_award">%s权限需要您的授权</string>
+    <string name="ensure">确定</string>
+    <string name="cancel">取消</string>
+    <string name="pm_read_no_space">读写存储</string>
+    <string name="pm_read_space">读写存储</string>
+    <string name="open_needs_pm">未取得%s的使用权,实时视频无法开启。</string>
+    <string name="turn_to_open">去打开</string>
+    <string name="permission_tip_title">权限说明</string>
+    <string name="set_permission_txt">赋予权限</string>
+    <string name="needs_pm_to_setting">未取得%s的使用权限，实时视频无法开启。请前往应用权限设置打开权限</string>
 </resources>

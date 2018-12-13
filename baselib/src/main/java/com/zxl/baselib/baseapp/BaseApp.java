@@ -5,6 +5,7 @@ import android.support.multidex.MultiDexApplication;
 
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
+import com.tencent.bugly.crashreport.CrashReport;
 
 /**
  * @author zxl on 2018/8/8.
@@ -39,6 +40,7 @@ public class BaseApp extends MultiDexApplication {
         screenDensity = getApplicationContext().getResources().getDisplayMetrics().density;
         //初始化Logger
         Logger.addLogAdapter(new AndroidLogAdapter());
+        CrashReport.initCrashReport(getApplicationContext(), "0059653729", true);
     }
 
     public static Context getContext() {

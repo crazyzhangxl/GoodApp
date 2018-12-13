@@ -1,1 +1,1 @@
-include ':app', ':baselib', ':xrecyclerview'
+include ':app', ':baselib', ':xrecyclerview',":bugly"

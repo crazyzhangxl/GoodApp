@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.tencent.bugly.crashreport.CrashReport;
 import com.zxl.goodapp.base.ApiRetrofit;
 import com.zxl.goodapp.commom.AppConstant;
 import com.zxl.goodapp.ui.activity.LaunchActivity;
@@ -67,7 +68,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initData() {
-
+        CrashReport.testJavaCrash();
     }
 
     @Override
