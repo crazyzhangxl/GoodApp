@@ -40,7 +40,6 @@ public class BaseApp extends MultiDexApplication {
         screenDensity = getApplicationContext().getResources().getDisplayMetrics().density;
         //初始化Logger
         Logger.addLogAdapter(new AndroidLogAdapter());
-        CrashReport.initCrashReport(getApplicationContext(), "0059653729", true);
     }
 
     public static Context getContext() {

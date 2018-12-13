@@ -14,5 +14,6 @@ public class MyApp extends BaseApp {
         super.onCreate();
         // litePal初始化
         LitePal.initialize(this);
+        CrashReport.initCrashReport(getApplicationContext(), "1fd02e67b8", true);
     }
 }

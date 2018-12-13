@@ -27,10 +27,16 @@ android {
             jniLibs.srcDirs = ['libs']
         }
     }
+    repositories {
+        flatDir {
+            dirs 'libs_aar'
+        }
+    }
 
 }
 
 dependencies {
     api fileTree(include: ['*.jar'], dir: 'libs')
     api files('libs/bugly_crash_release.jar')
+    api(name: 'bugly_crashreport_upgrade-1.3.5', ext: 'aar')
 }

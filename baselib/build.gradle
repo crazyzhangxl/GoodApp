@@ -140,5 +140,4 @@ dependencies {
 
     //加载进度条
     api project(':xrecyclerview')
-    api project(':bugly')
 }

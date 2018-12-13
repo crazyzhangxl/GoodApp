@@ -128,6 +128,10 @@
 -keep class org.joda.time.** { *; }
 -keep interface org.joda.time.** { *;}
 
+#blugy抗混淆配置
+-dontwarn com.tencent.bugly.**
+-keep public class com.tencent.bugly.**{*;}
+
 ##支付宝
 #-dontwarn com.alipay.**
 #-keep class com.alipay.android.app.IAliPay{*;}
